@@ -1,6 +1,6 @@
 # WebGL Fluid Simulation
 
-[Play here](https://www.tinarwhite.com/fluids/paint/)
+[Demo here](https://www.tinarwhite.com/fluids/paint/)
 
 <img src="/screenshot.jpg?raw=true" width="880">
 
