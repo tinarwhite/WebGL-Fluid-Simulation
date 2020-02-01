@@ -1,4 +1,4 @@
-# WebGL Fluid Simulation
+# Paint with Fluids using WebGL Fluid Simulation
 
 [Demo here](https://www.tinarwhite.com/fluids/paint/)
 
