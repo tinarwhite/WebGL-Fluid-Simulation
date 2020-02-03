@@ -3,6 +3,9 @@
 [Demo here](https://www.tinarwhite.com/fluids/paint/)
 
 <img src="/screenshot.jpg?raw=true" width="880">
+<img src="/screenshot2.jpg?raw=true" width="880">
+<img src="/screenshot3.jpg?raw=true" width="880">
+<img src="/screenshot4.jpg?raw=true" width="880">
 
 ## References
 
