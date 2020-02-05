@@ -2,8 +2,8 @@
 
 [Demo here](https://www.tinarwhite.com/fluids/paint/)
 
-<img src="/screenshots/screenshot.jpg?raw=true" width="880">
 <img src="/screenshots/screenshot2.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot.jpg?raw=true" width="880">
 <img src="/screenshots/screenshot3.jpg?raw=true" width="880">
 <img src="/screenshots/screenshot4.jpg?raw=true" width="880">
 <img src="/screenshots/screenshot5.jpg?raw=true" width="880">
