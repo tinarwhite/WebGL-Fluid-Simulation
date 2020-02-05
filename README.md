@@ -1,7 +1,7 @@
 # Make Fluid Dynamics Art using WebGL Fluid Simulation
 
 [Demo here](https://www.tinarwhite.com/fluids/paint/)
-
+ 
 <img src="/screenshots/screenshot.jpg?raw=true" width="880">
 <img src="/screenshots/screenshot2.jpg?raw=true" width="880">
 <img src="/screenshots/screenshot3.jpg?raw=true" width="880">
