@@ -32,25 +32,25 @@ let config = {
     DYE_RESOLUTION: 1024,
     CAPTURE_RESOLUTION: 512,
     DENSITY_DISSIPATION: 0,
-    VELOCITY_DISSIPATION: 0.1,
-    PRESSURE: 0.5,
+    VELOCITY_DISSIPATION: 2,
+    PRESSURE: 0,
     PRESSURE_ITERATIONS: 20,
-    CURL: 1,
-    SPLAT_RADIUS: 0.05,
+    CURL: 0,
+    SPLAT_RADIUS: 0.01,
     SPLAT_FORCE: 6000,
     SHADING: false,
     COLORFUL: true,
     COLOR_UPDATE_SPEED: 10,
     PAUSED: false,
     BACK_COLOR: { r: 0, g: 0, b: 0 },
-    TRANSPARENT: true,
+    TRANSPARENT: false,
     BLOOM: false,
     BLOOM_ITERATIONS: 8,
     BLOOM_RESOLUTION: 256,
     BLOOM_INTENSITY: 0.8,
     BLOOM_THRESHOLD: 0.6,
     BLOOM_SOFT_KNEE: 0.7,
-    SUNRAYS: false,
+    SUNRAYS: true,
     SUNRAYS_RESOLUTION: 196,
     SUNRAYS_WEIGHT: 1.0,
 }
@@ -178,23 +178,20 @@ function supportRenderTextureFormat (gl, internalFormat, format, type) {
 
 function startGUI () {
     var gui = new dat.GUI({ width: 300 });
-    gui.add(config, 'DYE_RESOLUTION', { '1024': 1024, '512': 512, '256': 256, '128': 128 }).name('dye resolution').onFinishChange(initFramebuffers);
-    gui.add(config, 'SIM_RESOLUTION', { '1024': 1024, '512': 512, '256': 256, '128': 128, '64': 64, '32': 32}).name('sim resolution').onFinishChange(initFramebuffers);
+    gui.add(config, 'DYE_RESOLUTION', { 'high': 1024, 'medium': 512, 'low': 256, 'very low': 128 }).name('quality').onFinishChange(initFramebuffers);
+    gui.add(config, 'SIM_RESOLUTION', { '32': 32, '64': 64, '128': 128, '256': 256 }).name('sim resolution').onFinishChange(initFramebuffers);
     gui.add(config, 'DENSITY_DISSIPATION', 0, 4.0).name('density diffusion');
     gui.add(config, 'VELOCITY_DISSIPATION', 0, 4.0).name('velocity diffusion');
     gui.add(config, 'PRESSURE', 0.0, 1.0).name('pressure');
     gui.add(config, 'CURL', 0, 50).name('vorticity').step(1);
     gui.add(config, 'SPLAT_RADIUS', 0.01, 1.0).name('splat radius');
     gui.add(config, 'SHADING').name('shading').onFinishChange(updateKeywords);
-    //gui.add(config, 'COLORFUL').name('colorful');
+    gui.add(config, 'COLORFUL').name('colorful');
     gui.add(config, 'PAUSED').name('paused').listen();
 
     gui.add({ fun: () => {
         splatStack.push(parseInt(Math.random() * 20) + 5);
     } }, 'fun').name('Random splats');
-
-	gui.add({ fun: captureScreenshot }, 'fun').name('Take screenshot');
-    gui.add({ fun: loadImage }, 'fun').name('Load image');
 
     let bloomFolder = gui.addFolder('Bloom');
     bloomFolder.add(config, 'BLOOM').name('enabled').onFinishChange(updateKeywords);
@@ -205,20 +202,10 @@ function startGUI () {
     sunraysFolder.add(config, 'SUNRAYS').name('enabled').onFinishChange(updateKeywords);
     sunraysFolder.add(config, 'SUNRAYS_WEIGHT', 0.3, 1.0).name('weight');
 
-    //let captureFolder = gui.addFolder('Capture');
-    //captureFolder.add(config, 'TRANSPARENT').name('transparent');
-    //captureFolder.add({ fun: captureScreenshot }, 'fun').name('take screenshot');
-
-    let github = gui.add({ fun : () => {
-        window.open('https://github.com/tinarwhite/WebGL-Fluid-Simulation');
-        ga('send', 'event', 'link button', 'github');
-    } }, 'fun').name('Github');
-    github.__li.className = 'cr function bigFont';
-    github.__li.style.borderLeft = '3px solid #8C8C8C';
-    let githubIcon = document.createElement('span');
-    github.domElement.parentElement.appendChild(githubIcon);
-    githubIcon.className = 'icon github';
-
+    let captureFolder = gui.addFolder('Capture');
+    captureFolder.addColor(config, 'BACK_COLOR').name('background color');
+    captureFolder.add(config, 'TRANSPARENT').name('transparent');
+    captureFolder.add({ fun: captureScreenshot }, 'fun').name('take screenshot');
 
     if (isMobile())
         gui.close();
@@ -240,47 +227,6 @@ function captureScreenshot () {
     let datauri = captureCanvas.toDataURL();
     downloadURI('fluid.png', datauri);
     URL.revokeObjectURL(datauri);
-}
-
-function loadImage() {
-      Init();
-	  openFileDialog();
- 
-      function Init() {
-          var inputFile = document.createElement('input');
-          inputFile.setAttribute('type', 'file');
-          inputFile.setAttribute('id', 'FileUploadingPluginInput');
-       
-          //filter certain files of type with following line:
-          //inputFile.setAttribute('accept', 'image/*'); //or accept="audio/mp3"
-       
-          inputFile.style.visibility = 'visible';
-          inputFile.onclick = function (event) {
-              this.value=null;
-          };
-		  
-          inputFile.onchange = function (evt) {
-              //process file
-
-              evt.stopPropagation();
-              var fileInput = evt.target.files;
-              if (!fileInput || !fileInput.length) {
-                  return; // "no image selected"
-              }
-			  
-              var picURL = window.URL.createObjectURL(fileInput[0]);
-			  console.log(picURL);
-              //do something with pic url
-			  imageTexture = createTextureAsync(picURL);
-          }
-          document.body.appendChild(inputFile);
-      }
- 
-      function openFileDialog() {
-              document.getElementById('FileUploadingPluginInput').click();
-      }
-
-
 }
 
 function framebufferToTexture (target) {
@@ -919,17 +865,15 @@ let bloomFramebuffers = [];
 let sunrays;
 let sunraysTemp;
 
-let ditheringTexture = createTextureAsync('LDR_LLL1_0.png');
-let imageTexture = createTextureAsync('bg.jpg');
-if (isMobile()) {
-	imageTexture = createTextureAsync('bg2.jpg');
-}
-
+//let ditheringTexture = createTextureAsync('LDR_LLL1_0.png');
+let ditheringTexture = createTextureAsync('bg.jpg');
 
 const blurProgram            = new Program(blurVertexShader, blurShader);
 const copyProgram            = new Program(baseVertexShader, copyShader);
 const clearProgram           = new Program(baseVertexShader, clearShader);
+//const colorProgram           = new Program(baseVertexShader, colorShader);
 const colorProgram           = new Program(baseVertexShader, colorShader);
+//const checkerboardProgram    = new Program(baseVertexShader, checkerboardShader);
 const checkerboardProgram    = new Program(baseVertexShader, copyShader);
 const bloomPrefilterProgram  = new Program(baseVertexShader, bloomPrefilterShader);
 const bloomBlurProgram       = new Program(baseVertexShader, bloomBlurShader);
@@ -957,7 +901,7 @@ function initFramebuffers () {
     const filtering = ext.supportLinearFiltering ? gl.LINEAR : gl.NEAREST;
 
     if (dye == null)
-        dye = createDyeFBO(dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
+        dye = createDoubleFBO(dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
     else
         dye = resizeDoubleFBO(dye, dyeRes.width, dyeRes.height, rgba.internalFormat, rgba.format, texType, filtering);
 
@@ -972,35 +916,6 @@ function initFramebuffers () {
 
     initBloomFramebuffers();
     initSunraysFramebuffers();
-}
-
-function createDyeFBO (w, h, internalFormat, format, type, param) {
-    let fbo1 = createFBO(w, h, internalFormat, format, type, param);
-    let fbo2 = createFBO(w, h, internalFormat, format, type, param);
-
-    return {
-        width: w,
-        height: h,
-        texelSizeX: fbo1.texelSizeX,
-        texelSizeY: fbo1.texelSizeY,
-        get read () {
-            return fbo1;
-        },
-        set read (value) {
-            fbo1 = value;
-        },
-        get write () {
-            return fbo2;
-        },
-        set write (value) {
-            fbo2 = value;
-        },
-        swap () {
-            let temp = fbo1;
-            fbo1 = fbo2;
-            fbo2 = temp;
-        }
-    }
 }
 
 function initBloomFramebuffers () {
@@ -1069,6 +984,17 @@ function createFBO (w, h, internalFormat, format, type, param) {
         }
     };
 }
+
+ //   let image = new Image();
+ //   image.onload = () => {
+ //       obj.width = image.width;
+ //       obj.height = image.height;
+ //       gl.bindTexture(gl.TEXTURE_2D, texture);
+ //       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+ //   };
+ //   image.src = url;
+
+
 
 function createDoubleFBO (w, h, internalFormat, format, type, param) {
     let fbo1 = createFBO(w, h, internalFormat, format, type, param);
@@ -1161,12 +1087,11 @@ function updateKeywords () {
 
 updateKeywords();
 initFramebuffers();
-//multipleSplats(parseInt(Math.random() * 20) + 5);
+multipleSplats(parseInt(Math.random() * 20) + 5);
 
 let lastUpdateTime = Date.now();
 let colorUpdateTimer = 0.0;
 update();
-
 
 function update () {
     const dt = calcDeltaTime();
@@ -1273,6 +1198,7 @@ function step (dt) {
     if (!ext.supportLinearFiltering)
         gl.uniform2f(advectionProgram.uniforms.dyeTexelSize, velocity.texelSizeX, velocity.texelSizeY);
     let velocityId = velocity.read.attach(0);
+	//let velocityId = ditheringTexture.attach(2)
     gl.uniform1i(advectionProgram.uniforms.uVelocity, velocityId);
     gl.uniform1i(advectionProgram.uniforms.uSource, velocityId);
     gl.uniform1f(advectionProgram.uniforms.dt, dt);
@@ -1285,7 +1211,8 @@ function step (dt) {
     if (!ext.supportLinearFiltering)
         gl.uniform2f(advectionProgram.uniforms.dyeTexelSize, dye.texelSizeX, dye.texelSizeY);
     gl.uniform1i(advectionProgram.uniforms.uVelocity, velocity.read.attach(0));
-    gl.uniform1i(advectionProgram.uniforms.uSource, dye.read.attach(1));
+	//gl.uniform1i(advectionProgram.uniforms.uSource, dye.read.attach(1));
+	gl.uniform1i(advectionProgram.uniforms.uSource, dye.read.attach(1));
     gl.uniform1f(advectionProgram.uniforms.dissipation, config.DENSITY_DISSIPATION);
     blit(dye.write.fbo);
     dye.swap();
@@ -1322,8 +1249,8 @@ function render (target) {
 function drawColor (fbo, color) {
     colorProgram.bind();
     //gl.uniform4f(colorProgram.uniforms.color, color.r, color.g, color.b, 1);
-	gl.uniform1i(colorProgram.uniforms.uDithering, imageTexture.attach(0));
-	let scale = getTextureScale(imageTexture, canvas.width, canvas.height);
+	gl.uniform1i(colorProgram.uniforms.uDithering, ditheringTexture.attach(0));
+	let scale = getTextureScale(ditheringTexture, canvas.width, canvas.height);
 	gl.uniform2f(colorProgram.uniforms.ditherScale, scale.x, scale.y);    
 	blit(fbo);
 }
@@ -1331,8 +1258,8 @@ function drawColor (fbo, color) {
 function drawCheckerboard (fbo) {
     checkerboardProgram.bind();
     //gl.uniform1f(checkerboardProgram.uniforms.aspectRatio, canvas.width / canvas.height);
-	gl.uniform1i(checkerboardProgram.uniforms.uDithering, imageTexture.attach(0));
-	let scale = getTextureScale(imageTexture, canvas.width, canvas.height);
+	gl.uniform1i(checkerboardProgram.uniforms.uDithering, ditheringTexture.attach(0));
+	let scale = getTextureScale(ditheringTexture, canvas.width, canvas.height);
 	gl.uniform2f(checkerboardProgram.uniforms.ditherScale, scale.x, scale.y);
     blit(fbo);
 }
@@ -1450,7 +1377,6 @@ function multipleSplats (amount) {
 }
 
 function splat (x, y, dx, dy, color) {
-	config.TRANSPARENT = false;
     gl.viewport(0, 0, velocity.width, velocity.height);
     splatProgram.bind();
     gl.uniform1i(splatProgram.uniforms.uTarget, velocity.read.attach(0));
@@ -1462,8 +1388,7 @@ function splat (x, y, dx, dy, color) {
     velocity.swap();
 
     gl.viewport(0, 0, dye.width, dye.height);
-    //gl.uniform1i(splatProgram.uniforms.uTarget, dye.read.attach(0));
-    gl.uniform1i(splatProgram.uniforms.uTarget, imageTexture.attach(2));
+    gl.uniform1i(splatProgram.uniforms.uTarget, ditheringTexture.attach(2));
     gl.uniform3f(splatProgram.uniforms.color, color.r, color.g, color.b);
     blit(dye.write.fbo);
     dye.swap();
@@ -1578,8 +1503,7 @@ function correctDeltaY (delta) {
 }
 
 function generateColor () {
-    //let c = HSVtoRGB(Math.random(), 1.0, 1.0);
-	let c = HSVtoRGB(0, 0, 0);
+    let c = HSVtoRGB(Math.random(), 1.0, 1.0);
     c.r *= 0.15;
     c.g *= 0.15;
     c.b *= 0.15;
