@@ -1,35 +1,34 @@
 # Make Fluid Dynamics Art using WebGL Fluid Simulation
 
 [Demo here](https://www.tinarwhite.com/fluids/paint/)
- 
-<img src="/screenshots/screenshot.jpg?raw=true" width="880">
+
 Autumn Swirls
-
-<img src="/screenshots/screenshot2.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot.jpg?raw=true" width="880">
 Churning sunset
-
-<img src="/screenshots/screenshot3.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot2.jpg?raw=true" width="880">
 Fluid Psychedelia
-<img src="/screenshots/screenshot4.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot3.jpg?raw=true" width="880">
 Painted Autumn Wind
-<img src="/screenshots/screenshot5.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot4.jpg?raw=true" width="880">
 Enchanted Forest
-<img src="/screenshots/screenshot6.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot5.jpg?raw=true" width="880">
 Bright Wave
-<img src="/screenshots/screenshot7.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot6.jpg?raw=true" width="880">
 Modern Fluid Art
-<img src="/screenshots/screenshot8.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot7.jpg?raw=true" width="880">
 Fluid Fire
-<img src="/screenshots/screenshot9.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot8.jpg?raw=true" width="880">
 Psychedelic Fuzz
-<img src="/screenshots/screenshot10.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot9.jpg?raw=true" width="880">
 Curvy Sunrays
-<img src="/screenshots/screenshot11.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot10.jpg?raw=true" width="880">
 Sexy Artichoke
-<img src="/screenshots/screenshot12.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot11.jpg?raw=true" width="880">
 Painted Sand Mandala
-<img src="/screenshots/screenshot1.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot12.jpg?raw=true" width="880">
 Ursula
+<img src="/screenshots/screenshot1.jpg?raw=true" width="880">
+
 
 [Demo here](https://www.tinarwhite.com/fluids/paint/)
 
