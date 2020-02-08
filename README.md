@@ -4,7 +4,7 @@
 
 Autumn Swirls
 <img src="/screenshots/screenshot.jpg?raw=true" width="880">
-Flowing Sunset
+Turbulent Sunset
 <img src="/screenshots/screenshot2.jpg?raw=true" width="880">
 Fluid Psychedelia
 <img src="/screenshots/screenshot3.jpg?raw=true" width="880">
