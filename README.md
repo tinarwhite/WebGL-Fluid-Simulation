@@ -4,7 +4,7 @@
 
 Autumn Swirls
 <img src="/screenshots/screenshot.jpg?raw=true" width="880">
-Churning sunset
+Flowing Sunset
 <img src="/screenshots/screenshot2.jpg?raw=true" width="880">
 Fluid Psychedelia
 <img src="/screenshots/screenshot3.jpg?raw=true" width="880">
@@ -20,11 +20,11 @@ Fluid Fire
 <img src="/screenshots/screenshot8.jpg?raw=true" width="880">
 Psychedelic Fuzz
 <img src="/screenshots/screenshot9.jpg?raw=true" width="880">
-Curvy Sunrays
+Disrupted Sunrays
 <img src="/screenshots/screenshot10.jpg?raw=true" width="880">
 Sexy Artichoke
 <img src="/screenshots/screenshot11.jpg?raw=true" width="880">
-Painted Sand Mandala
+Curvy Sand Mandala
 <img src="/screenshots/screenshot12.jpg?raw=true" width="880">
 Ursula
 <img src="/screenshots/screenshot1.jpg?raw=true" width="880">
