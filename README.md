@@ -10,7 +10,7 @@ Fluidic Psychedelia
 <img src="/screenshots/screenshot3.jpg?raw=true" width="880">
 Painted Autumn Wind
 <img src="/screenshots/screenshot4.jpg?raw=true" width="880">
-Enchanted Forest
+Enchanted Forest Dream
 <img src="/screenshots/screenshot5.jpg?raw=true" width="880">
 Bright Jungle Wave
 <img src="/screenshots/screenshot6.jpg?raw=true" width="880">
