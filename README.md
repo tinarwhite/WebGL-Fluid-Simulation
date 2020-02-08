@@ -24,7 +24,7 @@ Disrupted Sunrays
 <img src="/screenshots/screenshot10.jpg?raw=true" width="880">
 Sexy Artichoke
 <img src="/screenshots/screenshot11.jpg?raw=true" width="880">
-Curvy Sand Mandala
+Paint Mandala
 <img src="/screenshots/screenshot12.jpg?raw=true" width="880">
 Ursula
 <img src="/screenshots/screenshot1.jpg?raw=true" width="880">
