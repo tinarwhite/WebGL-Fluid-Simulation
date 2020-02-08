@@ -6,7 +6,7 @@ Autumn Swirls
 <img src="/screenshots/screenshot.jpg?raw=true" width="880">
 Turbulent Sunset
 <img src="/screenshots/screenshot2.jpg?raw=true" width="880">
-Fluid Psychedelia
+Fluidic Psychedelia
 <img src="/screenshots/screenshot3.jpg?raw=true" width="880">
 Painted Autumn Wind
 <img src="/screenshots/screenshot4.jpg?raw=true" width="880">
