@@ -1,6 +1,6 @@
 # Make Fluid Dynamics Art using WebGL Fluid Simulation
 
-[Demo here](https://www.tinarwhite.com/fluids/paint/)
+[Make your own artwork here](https://www.tinarwhite.com/fluids/paint/)
 
 Autumn Swirls
 <img src="/screenshots/screenshot.jpg?raw=true" width="880">
@@ -30,7 +30,7 @@ Ursula
 <img src="/screenshots/screenshot1.jpg?raw=true" width="880">
 
 
-[Demo here](https://www.tinarwhite.com/fluids/paint/)
+[Make your own artwork here](https://www.tinarwhite.com/fluids/paint/)
 
 ## References
 
