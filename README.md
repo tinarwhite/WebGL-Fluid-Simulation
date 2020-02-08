@@ -12,7 +12,7 @@ Painted Autumn Wind
 <img src="/screenshots/screenshot4.jpg?raw=true" width="880">
 Enchanted Forest
 <img src="/screenshots/screenshot5.jpg?raw=true" width="880">
-Bright Wave
+Bright Jungle Wave
 <img src="/screenshots/screenshot6.jpg?raw=true" width="880">
 Modern Fluid Art
 <img src="/screenshots/screenshot7.jpg?raw=true" width="880">
