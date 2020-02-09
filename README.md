@@ -1,4 +1,4 @@
-# Make Fluid Dynamics Art using WebGL Fluid Simulation
+# Make Fluid Dynamic Art using WebGL Fluid Simulation
 
 [Make your own artwork here](https://www.tinarwhite.com/fluids/paint/)
 
