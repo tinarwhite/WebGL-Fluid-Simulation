@@ -26,8 +26,10 @@ Sexy Artichoke
 <img src="/screenshots/screenshot11.jpg?raw=true" width="880">
 Painted Oval Mandala
 <img src="/screenshots/screenshot12.jpg?raw=true" width="880">
+Rainbow Paint
+<img src="/screenshots/screenshot13.jpg?raw=true" width="880">
 Ursula
-<img src="/screenshots/screenshot1.jpg?raw=true" width="880">
+<img src="/screenshots/screenshot14.jpg?raw=true" width="880">
 
 
 [Make your own artwork here](https://www.tinarwhite.com/fluids/paint/)
