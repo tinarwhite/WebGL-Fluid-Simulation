@@ -1,5 +1,7 @@
 # Make Fluid Dynamic Art using WebGL Fluid Simulation
 
+Real-time fluid dynamics running on the GPU with the help of WebGL. This is a simulation of the Navier-Stokes Equations with the assumption of an incompressible, homogeneous fluid.
+
 [Make your own artwork here](https://www.tinarwhite.com/fluids/paint/)
 
 Autumn Swirls
